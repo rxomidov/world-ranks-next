@@ -2,11 +2,11 @@ import Head from "next/head";
 import styled from 'styled-components';
 import styles from "../../components/Layout/Layout.module.css";
 
-const Layout = ({children}) => {
+const Layout = ({children, title}) => {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Create Next App</title>
+                <title>{title}</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <header className={styles.header}>
