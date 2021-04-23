@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styled from 'styled-components';
-import styles from "../../components/Layout/Layout.module.css";
+import styles from "./Layout.module.css";
 
 const Layout = ({children, title}) => {
     return (
