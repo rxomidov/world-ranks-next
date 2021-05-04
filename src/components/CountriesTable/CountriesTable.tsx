@@ -2,6 +2,17 @@ import styles from "./CountriesTable.module.css";
 import {KeyboardArrowDownRounded, KeyboardArrowUpRounded} from "@material-ui/icons";
 import {useState} from "react";
 
+interface Country {
+    name: string,
+    population: number,
+}
+interface CountriesTable {
+    countries: any
+}
+interface Direction {
+    direction: string;
+}
+
 const orderBy = (countries, direction) => {
     if (direction === "asc"){
         return [...countries].sort((a,b) => (a.population > b.population ? 1 : -1));
@@ -10,7 +21,7 @@ const orderBy = (countries, direction) => {
     } else return countries
 }
 
-const SortArrow = ({direction}) => {
+const SortArrow = ({direction} : Direction) => {
     if (!direction){
         return <></>;
     }
@@ -30,7 +41,7 @@ const SortArrow = ({direction}) => {
     }
 };
 
-const CountriesTable = ({countries}) => {
+const CountriesTable = ({countries} : CountriesTable) => {
     const [direction, setDirection] = useState();
     const orderedCountries = orderBy(countries, "desc");
     const switchDirection = () => {
@@ -51,14 +62,14 @@ const CountriesTable = ({countries}) => {
             <div className={styles.heading}>
                 <button className={styles.heading_name} onClick={switchDirection}>
                     <div>Name</div>
-                    <SortArrow/>
+                    <SortArrow direction="desc"/>
                 </button>
                 <button className={styles.heading_population} onClick={switchDirection}>
                     <div>Population</div>
                     <SortArrow/>
                 </button>
             </div>
-            {orderedCountries.map((country)=>(
+            {orderedCountries.map((country: Country)=>(
                 <div key={country.name} className={styles.row}>
                     <div className={styles.name}>{country.name}</div>
                     <div className={styles.population}>{country.population}</div>
